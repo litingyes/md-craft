@@ -20,7 +20,12 @@
     "e2e": "playwright test"
   },
   "dependencies": {
-    "electron-updater": "^6.1.8"
+    "@note-editor/tiptap-extension-unique-id": "^0.3.1",
+    "@tiptap/react": "^2.3.1",
+    "@tiptap/starter-kit": "^2.3.1",
+    "electron-updater": "^6.1.8",
+    "sanitize.css": "^13.0.0",
+    "sass": "^1.76.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.42.1",
