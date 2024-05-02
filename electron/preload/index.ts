@@ -1,4 +1,4 @@
-import { ipcRenderer, contextBridge } from 'electron'
+import { contextBridge, ipcRenderer } from 'electron'
 
 // --------- Expose some API to the Renderer process ---------
 contextBridge.exposeInMainWorld('ipcRenderer', {
@@ -25,14 +25,14 @@ contextBridge.exposeInMainWorld('ipcRenderer', {
 
 // --------- Preload scripts loading ---------
 function domReady(condition: DocumentReadyState[] = ['complete', 'interactive']) {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     if (condition.includes(document.readyState)) {
       resolve(true)
-    } else {
+    }
+    else {
       document.addEventListener('readystatechange', () => {
-        if (condition.includes(document.readyState)) {
+        if (condition.includes(document.readyState))
           resolve(true)
-        }
       })
     }
   })
@@ -40,14 +40,12 @@ function domReady(condition: DocumentReadyState[] = ['complete', 'interactive'])
 
 const safeDOM = {
   append(parent: HTMLElement, child: HTMLElement) {
-    if (!Array.from(parent.children).find(e => e === child)) {
+    if (!Array.from(parent.children).find(e => e === child))
       return parent.appendChild(child)
-    }
   },
   remove(parent: HTMLElement, child: HTMLElement) {
-    if (Array.from(parent.children).find(e => e === child)) {
+    if (Array.from(parent.children).find(e => e === child))
       return parent.removeChild(child)
-    }
   },
 }
 

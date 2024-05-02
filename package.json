@@ -1,23 +1,26 @@
 {
   "name": "md-craft",
+  "type": "module",
   "version": "0.0.0",
-  "main": "dist-electron/main/index.js",
+  "private": true,
   "description": "Electron Vite React boilerplate.",
   "author": "litingyes <luz.liting@gmail.com>",
   "license": "MIT",
-  "private": true,
+  "main": "dist-electron/main/index.js",
   "debug": {
     "env": {
       "VITE_DEV_SERVER_URL": "http://127.0.0.1:7777/"
     }
   },
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build && electron-builder",
     "preview": "vite preview",
     "pree2e": "vite build --mode=test",
-    "e2e": "playwright test"
+    "e2e": "playwright test",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prepare": "husky"
   },
   "dependencies": {
     "@note-editor/tiptap-extension-unique-id": "^0.3.1",
@@ -28,6 +31,7 @@
     "sass": "^1.76.0"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^2.16.1",
     "@playwright/test": "^1.42.1",
     "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.21",
@@ -35,6 +39,9 @@
     "autoprefixer": "^10.4.18",
     "electron": "^29.1.1",
     "electron-builder": "^24.13.3",
+    "eslint": "^9.1.1",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
     "postcss": "^8.4.35",
     "postcss-import": "^16.0.1",
     "react": "^18.2.0",
@@ -44,5 +51,8 @@
     "vite": "^5.1.5",
     "vite-plugin-electron": "^0.28.4",
     "vite-plugin-electron-renderer": "^0.14.5"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
   }
 }

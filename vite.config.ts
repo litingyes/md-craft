@@ -1,5 +1,6 @@
 import { rmSync } from 'node:fs'
 import path from 'node:path'
+import process from 'node:process'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import electron from 'vite-plugin-electron/simple'
@@ -16,7 +17,7 @@ export default defineConfig(({ command }) => {
   return {
     resolve: {
       alias: {
-        '@': path.join(__dirname, 'src')
+        '@': path.join(__dirname, 'src'),
       },
     },
     plugins: [
@@ -26,11 +27,10 @@ export default defineConfig(({ command }) => {
           // Shortcut of `build.lib.entry`
           entry: 'electron/main/index.ts',
           onstart(args) {
-            if (process.env.VSCODE_DEBUG) {
+            if (process.env.VSCODE_DEBUG)
               console.log(/* For `.vscode/.debug.script.mjs` */'[startup] Electron App')
-            } else {
+            else
               args.startup()
-            }
           },
           vite: {
             build: {
